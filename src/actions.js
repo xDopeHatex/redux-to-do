@@ -4,7 +4,10 @@ export const DONE = "DONE";
 
 export const addTask = (value) => ({
   type: ADD,
-  payload: { id: value.id, text: value.text },
+  payload: { text: value },
 });
-export const deleteTask = (value) => ({ type: DELETE, payload: value.id });
-export const doneTask = (value) => ({ type: DONE, payload: value.done });
+export const deleteTask = (value) => ({
+  type: DELETE,
+  payload: { id: value },
+});
+export const doneTask = (value) => ({ type: DONE, payload: { doneId: value } });
