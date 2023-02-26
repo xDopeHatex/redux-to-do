@@ -1,4 +1,4 @@
-import { DELETE, ADD, DONE } from "./actions";
+import { DELETE, ADD, DONE, EDIT } from "./actions";
 
 export const initialState = [];
 
@@ -22,6 +22,16 @@ export const reducer = (state = initialState, action) => {
     return state.map((task) => {
       if (task.id === action.payload.doneId) {
         return { ...task, done: true };
+      } else return { ...task };
+    });
+  }
+
+  if (action.type === EDIT) {
+    console.log(action);
+
+    return state.map((task) => {
+      if (task.id === action.payload.id) {
+        return { ...task, text: action.payload.text };
       } else return { ...task };
     });
   }
