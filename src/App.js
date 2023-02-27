@@ -16,6 +16,7 @@ function App() {
   const [displayChangeStatus, setDisplayChangeStatus] = useState(false);
   const [taskNumbers, setTaskNumbers] = useState(0);
   const [isValid, setIsValid] = useState(true);
+  const [validText, setValidText] = useState("");
 
   const toggleSelect = () => {
     if (displayChangeStatus === true) {
@@ -70,6 +71,12 @@ function App() {
 
     if (inputText.trim() === "") {
       setIsValid(false);
+      setValidText("Are you tying to submit an empty input? Try harder");
+    } else if (inputText.trim().length > 80) {
+      setIsValid(false);
+      setValidText(
+        `Sorry to tell you, but it isn't a blog. You'll be good using less than 80 characters`
+      );
     } else {
       setIsValid(true);
       setTaskStatusDisplay("Active Tasks");
@@ -102,6 +109,7 @@ function App() {
               className="flex justify-between items-center rounded-xl bg-white p-3 w-full space-x-3 group"
             >
               <input
+                maxLength={81}
                 type="text"
                 name="task"
                 id="task"
@@ -170,7 +178,7 @@ function App() {
               isValid ? "hidden" : ""
             } text-red-100 px-2 py-1 rounded-md bg-black`}
           >
-            Are you trying to submit an empty input? Try harder
+            {validText}
           </div>
 
           <ul className="collection flex flex-col rounded-xl space-y-3 overflow-y-auto pr-4 min-h-[20rem] p-3">
