@@ -15,6 +15,7 @@ function App() {
   const [taskStatusDisplay, setTaskStatusDisplay] = useState("Active Tasks");
   const [displayChangeStatus, setDisplayChangeStatus] = useState(false);
   const [taskNumbers, setTaskNumbers] = useState(0);
+  const [isValid, setIsValid] = useState(true);
 
   const toggleSelect = () => {
     if (displayChangeStatus === true) {
@@ -67,8 +68,15 @@ function App() {
   const addItem = (e) => {
     e.preventDefault();
 
-    dispatch(addTask(inputText));
-    setInputText("");
+    if (inputText.trim() === "") {
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+      setTaskStatusDisplay("Active Tasks");
+      handlerStatusChange("Active Tasks");
+      dispatch(addTask(inputText.trim()));
+      setInputText("");
+    }
   };
 
   return (
@@ -103,6 +111,7 @@ function App() {
                 className="w-full"
                 placeholder="You can always write your task here"
               />
+
               <button
                 onClick={addItem}
                 className="flex items-center justify-center h-6 w-6"
@@ -155,6 +164,13 @@ function App() {
                 </a>
               </div>
             </div>
+          </div>
+          <div
+            className={`  ${
+              isValid ? "hidden" : ""
+            } text-red-100 px-2 py-1 rounded-md bg-black`}
+          >
+            Are you trying to submit an empty input? Try harder
           </div>
 
           <ul className="collection flex flex-col rounded-xl space-y-3 overflow-y-auto pr-4 min-h-[20rem] p-3">
