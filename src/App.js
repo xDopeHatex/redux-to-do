@@ -83,6 +83,7 @@ function App() {
       handlerStatusChange("Active Tasks");
       dispatch(addTask(inputText.trim()));
       setInputText("");
+      userRef.current.focus();
     }
   };
 
