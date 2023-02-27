@@ -9,6 +9,7 @@ import { reducer } from "./reducer";
 import imgButton from "./img/button.svg";
 
 import { addTask } from "./actions";
+import { useActions } from "./use-actions";
 
 function App() {
   const store = useSelector((state) => state);
@@ -17,6 +18,8 @@ function App() {
   const [taskNumbers, setTaskNumbers] = useState(0);
   const [isValid, setIsValid] = useState(true);
   const [validText, setValidText] = useState("");
+
+  const actions = useActions({ addTask });
 
   const toggleSelect = () => {
     if (displayChangeStatus === true) {
@@ -81,7 +84,7 @@ function App() {
       setIsValid(true);
       setTaskStatusDisplay("Active Tasks");
       handlerStatusChange("Active Tasks");
-      dispatch(addTask(inputText.trim()));
+      actions.addTask(inputText.trim());
       setInputText("");
       userRef.current.focus();
     }
