@@ -72,10 +72,10 @@ function App() {
     if (inputText.trim() === "") {
       setIsValid(false);
       setValidText("Are you tying to submit an empty input? Try harder");
-    } else if (inputText.trim().length > 80) {
+    } else if (inputText.trim().length > 20) {
       setIsValid(false);
       setValidText(
-        `Sorry to tell you, but it isn't a blog. You'll be good using less than 80 characters`
+        `Sorry to tell you, but it isn't a blog. You'll be good using less than 20 characters`
       );
     } else {
       setIsValid(true);
@@ -109,7 +109,7 @@ function App() {
               className="flex justify-between items-center rounded-xl bg-white p-3 w-full space-x-3 group"
             >
               <input
-                maxLength={81}
+                maxLength={21}
                 type="text"
                 name="task"
                 id="task"

@@ -29,10 +29,10 @@ const Task = (props) => {
     if (inputText.trim() === "") {
       setIsValid(false);
       setValidText("Are you tying to submit an empty input? Try harder");
-    } else if (inputText.trim().length > 80) {
+    } else if (inputText.trim().length > 20) {
       setIsValid(false);
       setValidText(
-        `Sorry to tell you, but it isn't a blog. You'll be good using less than 80 characters`
+        `Sorry to tell you, but it isn't a blog. You'll be good using less than 20 characters`
       );
     } else {
       setIsValid(true);
@@ -63,7 +63,7 @@ const Task = (props) => {
       >
         <form className={` ${isEdit ? "" : "hidden"} flex space-x-2 w-full`}>
           <input
-            maxLength={81}
+            maxLength={21}
             ref={userRef}
             onChange={(e) => setInputText(e.target.value)}
             type="text"
