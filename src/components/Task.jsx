@@ -20,7 +20,8 @@ const Task = (props) => {
     dispatch(doneTask(props.id));
   };
 
-  const editItem = () => {
+  const editItem = (e) => {
+    e.preventDefault();
     dispatch(editTask({ id: props.id, text: inputText }));
 
     setIsEdit(false);
